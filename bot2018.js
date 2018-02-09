@@ -66,7 +66,7 @@ Chatbot
       {
         interval: 7,
         offset: 0,
-        msg: "/em: Mantenha-se sempre votando, se não será removido da lista de espera e da cabine de DJ."
+        msg: "/em: Mantenha-se sempre votando, se nÃ£o serÃ¡ removido da lista de espera e da cabine de DJ."
       },{
         interval: 5,
         offset: 0,
@@ -392,7 +392,7 @@ Chatbot
           secsLastActive = timeSinceLastActivity / 1000;
           if (user.getWarningCount() === 0) {
             user.warn();
-            _results.push(API.sendChat("@" + user.getUser().username + ", Eu não vi você votar durante 30 minutos.  Vote nos próximos 2 minutos, se não será removido."));
+            _results.push(API.sendChat("@" + user.getUser().username + ", Eu nÃ£o vi vocÃª votar durante 30 minutos.  Vote nos prÃ³ximos 2 minutos, se nÃ£o serÃ¡ removido."));
           } else if (user.getWarningCount() === 1) {
             lastWarned = user.getLastWarning();
             timeSinceLastWarning = now.getTime() - lastWarned.getTime();
@@ -400,7 +400,7 @@ Chatbot
             if (timeSinceLastWarning > twoMinutes) {
               user.warn();
               warnMsg = "@" + user.getUser().username;
-              warnMsg += ", Eu não vi você votar durante 32 minutos. Vote no próximo minuto ou eu o removerei, este é seu ultimo aviso.";
+              warnMsg += ", Eu nÃ£o vi vocÃª votar durante 32 minutos. Vote no prÃ³ximo minuto ou eu o removerei, este Ã© seu ultimo aviso.";
               _results.push(API.sendChat(warnMsg));
             } else {
               _results.push(void 0);
@@ -412,7 +412,7 @@ Chatbot
             if (timeSinceLastWarning > oneMinute) {
               DJs = API.getDJs();
               if (DJs.length > 0 && DJs[0].id !== user.getUser().id) {
-                API.sendChat("@" + user.getUser().username + ", Você teve 2 avisos. Por favor, mantenha-se sempre votando.");
+                API.sendChat("@" + user.getUser().username + ", VocÃª teve 2 avisos. Por favor, mantenha-se sempre votando.");
                 API.moderateRemoveDJ(id);
                 _results.push(user.warn());
               } else {
@@ -592,7 +592,7 @@ Chatbot
 
     cookieCommand.prototype.getCookie = function() {
       var c, cookies;
-      cookies = ["muita aveia", "um cafesinho", "um toddynho", "um copo de coca-cola", "uma dose de Ipioca", "limões", "um danoninho", "um cafe extra forte", "maçãs", "bananas", "um brinquedinho", "amendoins", "muita aveia"];
+      cookies = ["muita aveia", "um cafesinho", "um toddynho", "um copo de coca-cola", "uma dose de Ipioca", "limÃµes", "um danoninho", "um cafe extra forte", "maÃ§Ã£s", "bananas", "um brinquedinho", "amendoins", "muita aveia"];
       c = Math.floor(Math.random() * cookies.length);
       return cookies[c];
     };
@@ -604,7 +604,7 @@ Chatbot
       if (msg.substring(7, 8) === "@") {
         user = r.lookupUser(msg.substr(8));
         if (user === false) {
-          API.sendChat("/em: não encontrei ' " + msg.substr(8) +  "' na sala. Então, sobra mais pra mim! d(>_<)b ");
+          API.sendChat("/em: nÃ£o encontrei ' " + msg.substr(8) +  "' na sala. EntÃ£o, sobra mais pra mim! d(>_<)b ");
           return false;
         } else {
           return API.sendChat("/em: @" + user.username + ", @" + this.msgData.from + " o recompensou com " + this.getCookie() + ".  Aproveite!");
@@ -661,7 +661,7 @@ Chatbot
       } else {
         selections['artist'] = chooseRandom(arts);
       }
-     msg = "Todo mundo já ouviu aquela musica do " + selections['artist'] + " obtenha novas musicas em http://youtube.com/" + selections['channels'][0] + " http://youtube.com/" + selections['channels'][1] + " ou http://youtube.com/" + selections['channels'][2];
+     msg = "Todo mundo jÃ¡ ouviu aquela musica do " + selections['artist'] + " obtenha novas musicas em http://youtube.com/" + selections['channels'][0] + " http://youtube.com/" + selections['channels'][1] + " ou http://youtube.com/" + selections['channels'][2];
       return API.sendChat(msg);
     };
 
@@ -691,7 +691,7 @@ Chatbot
 
     whyWootCommand.prototype.functionality = function() {
       var msg, nameIndex;
-      msg = "lindão vlw flw!";;
+      msg = "lindÃ£o vlw flw!";;
       if ((nameIndex = this.msgData.message.indexOf('@')) !== -1) {
         return API.sendChat(this.msgData.message.substr(nameIndex) + ', ' + msg);
       } else {
@@ -719,7 +719,7 @@ Chatbot
 
     themeCommand.prototype.functionality = function() {
       var msg1, msg2;
-      msg1 = "Todo tipo de musica eletronica de boa qualidade é permitida aqui. Incluindo Electro, Dubstep, Techno, Trap, EDM, ";
+      msg1 = "Todo tipo de musica eletronica de boa qualidade Ã© permitida aqui. Incluindo Electro, Dubstep, Techno, Trap, EDM, ";
       msg1 += "Hardstyle, House e Trance. ";
       msg2 = "All kinds of electronic song of good quality is allowed here. Including Electro, Dubstep, Techno, Trap, EDM, ";
       msg2 += "Hardstyle, House and Trance. ";	  
@@ -750,11 +750,11 @@ Chatbot
 
     rulesCommand.prototype.functionality = function() {
       var msg1, msg2;
-       msg1 = "1) Tempo máximo 6 min e 30 seg. ";
-      msg1 += "2) Não escrever em /me ou /em.  ";
+       msg1 = "1) Tempo mÃ¡ximo 6 min e 30 seg. ";
+      msg1 += "2) NÃ£o escrever em /me ou /em.  ";
       msg1 += "3) Respeitar os moderadores da sala. ";
       msg1 += "4) Sem flood no chat. ";
-      msg1 += "5) Não fique pedindo cargos. ";
+      msg1 += "5) NÃ£o fique pedindo cargos. ";
       msg1 += "6) Proibido pedir fans ou usar fanbot! ";
       msg2 += "1) Maximum time 6 minutes and 30 seconds. ";
       msg2 += "2) Can't write in /me or /em. ";
@@ -788,8 +788,8 @@ Chatbot
 
     roomHelpCommand.prototype.functionality = function() {
       var msg1, msg2;
-      msg1 = "Bem vindo a sala Electro House Br! Ser DJ: Crie uma lista de reprodução e coloque Musica do Youtube ou soundcloud. ";
-      msg1 += "Se é novo va embaixo do chat e clique onde tera um nome e depois mude o nome. ";
+      msg1 = "Bem vindo a sala Electro House Br! Ser DJ: Crie uma lista de reproduÃ§Ã£o e coloque Musica do Youtube ou soundcloud. ";
+      msg1 += "Se Ã© novo va embaixo do chat e clique onde tera um nome e depois mude o nome. ";
       msg1 += "Para Ganhar Pontos clique em woot. ";
       msg2 = "Divirta-se! Qualquer outra duvida chame um adm da sala ";
       API.sendChat(msg1);
@@ -842,7 +842,7 @@ Chatbot
 
     wootCommand.prototype.functionality = function() {
       var msg, nameIndex;
-      msg = "Use o auto woot para evitar remoção da cabine de DJ por não estar votando .http://derpthebass.github.io/BassPlugLite/ ";
+      msg = "Use o auto woot para evitar remoÃ§Ã£o da cabine de DJ por nÃ£o estar votando .http://derpthebass.github.io/BassPlugLite/ ";
       if ((nameIndex = this.msgData.message.indexOf('@')) !== -1) {
         return API.sendChat(this.msgData.message.substr(nameIndex) + ', ' + msg);
       } else {
@@ -870,7 +870,7 @@ Chatbot
 
     badQualityCommand.prototype.functionality = function() {
       var msg;
-      msg = "Não gostei da sua musica, tente melhorar da proxima vez";
+      msg = "NÃ£o gostei da sua musica, tente melhorar da proxima vez";
       return API.sendChat(msg);
     };
 
@@ -934,7 +934,7 @@ Chatbot
         }
       }
       if (msg === '') {
-        return API.sendChat("Ninguém está AFK");
+        return API.sendChat("NinguÃ©m estÃ¡ AFK");
       } else {
         return API.sendChat('AFKs: ' + msg);
       }
@@ -974,7 +974,7 @@ Chatbot
         }
       }
       if (msg === '') {
-        return API.sendChat("Ninguém está AFK");
+        return API.sendChat("NinguÃ©m estÃ¡ AFK");
       } else {
         return API.sendChat('AFKs: ' + msg);
       }
@@ -1056,11 +1056,11 @@ Chatbot
     };
 
     dieCommand.prototype.functionality = function() {
-      API.sendChat('Como tu é burro, cara.');
+      API.sendChat('Como tu Ã© burro, cara.');
       undoHooks();
       API.sendChat('Por que fez isso? Que loucura.');
       data.implode();
-      return API.sendChat('Agora o chat bot está desligado');
+      return API.sendChat('Agora o chat bot estÃ¡ desligado');
     };
 
     return dieCommand;
@@ -1195,7 +1195,7 @@ Chatbot
         }
       }
       if (stringstaff.length === 0) {
-        stringstaff = "Não ha ADMs ativos no momento :'(";
+        stringstaff = "NÃ£o ha ADMs ativos no momento :'(";
       }
       return stringstaff;
     };
@@ -1322,7 +1322,7 @@ Chatbot
           });
         }
       } else {
-        return API.sendChat("Tire o espaço entre os nomes e coloque \'para\'");
+        return API.sendChat("Tire o espaÃ§o entre os nomes e coloque \'para\'");
       }
     };
 
@@ -1413,7 +1413,7 @@ Chatbot
             return;
           }
         }
-        API.sendChat('' + name + ' Não pode ser encontrado');
+        API.sendChat('' + name + ' NÃ£o pode ser encontrado');
       } else {
         API.sendChat('Mas, wat?');
       }
@@ -1444,10 +1444,10 @@ Chatbot
         param = msg.substr(11);
         if (param === 'Ativar') {
           data.forceSkip = true;
-          return API.sendChat("Pulo forçado ativado.");
+          return API.sendChat("Pulo forÃ§ado ativado.");
         } else if (param === 'Desativar') {
           data.forceSkip = false;
-          return API.sendChat("Pulo forçado desativado.");
+          return API.sendChat("Pulo forÃ§ado desativado.");
         }
       }
     };
@@ -1471,7 +1471,7 @@ Chatbot
     };
 
     overplayedCommand.prototype.functionality = function() {
-      return API.sendCha("Acho que não, em?");
+      return API.sendCha("Acho que nÃ£o, em?");
     };
 
     return overplayedCommand;
@@ -1648,25 +1648,25 @@ Chatbot
               dcMeridian = dcHour % 12 === dcHour ? 'AM' : 'PM';
               dcTimeStr = '' + dcHour + ':' + dcMins + ' ' + dcMeridian;
               dcSongsAgo = data.songCount - recentDisconnect.songCount;
-              resp += 'Sua desconexão mais recente foi as ' + dcTimeStr + ' (' + dcSongsAgo + ' músicas atras). ';
+              resp += 'Sua desconexÃ£o mais recente foi as ' + dcTimeStr + ' (' + dcSongsAgo + ' mÃºsicas atras). ';
               if (recentDisconnect.waitlistPosition !== void 0) {
-                resp += 'Ele estava ' + recentDisconnect.waitlistPosition + ' músicas';
+                resp += 'Ele estava ' + recentDisconnect.waitlistPosition + ' mÃºsicas';
                 if (recentDisconnect.waitlistPosition > 1) {
                   resp += '';
                 }
                 resp += ' antes da cabine de DJ.';
               } else {
-                resp += 'Ele não estava na cabine de dj ou na lista de espera.';
+                resp += 'Ele nÃ£o estava na cabine de dj ou na lista de espera.';
               }
               API.sendChat(resp);
               return;
             } else {
-              API.sendChat("" + u.getUser().username + " não desconectou.");
+              API.sendChat("" + u.getUser().username + " nÃ£o desconectou.");
               return;
             }
           }
         }
-        return API.sendChat("'Este nome " + givenName + " não pode ser encontrado'.");
+        return API.sendChat("'Este nome " + givenName + " nÃ£o pode ser encontrado'.");
       }
     };
 
@@ -1709,13 +1709,13 @@ Chatbot
           } else {
             msg += '. ';
           }
-          msg += "O seu voteratio é: " + votes['positiveRatio'].toString() + ".";
+          msg += "O seu voteratio Ã©: " + votes['positiveRatio'].toString() + ".";
           return API.sendChat(msg);
         } else {
-          return API.sendChat("Este nome' " + name +  " não pode ser encontrado'");
+          return API.sendChat("Este nome' " + name +  " nÃ£o pode ser encontrado'");
         }
       } else {
-        return API.sendChat("Faça isso direito, newbie!");
+        return API.sendChat("FaÃ§a isso direito, newbie!");
       }
     };
 
@@ -1754,7 +1754,7 @@ Chatbot
         averageRatio += ratio;
       }
       averageRatio = averageRatio / roomRatios.length;
-      msg = "Contabilidade de " + roomRatios.length.toString() + " votos por usuário, e a taxa média da sala é de " + averageRatio.toFixed(2).toString() + " votos.";
+      msg = "Contabilidade de " + roomRatios.length.toString() + " votos por usuÃ¡rio, e a taxa mÃ©dia da sala Ã© de " + averageRatio.toFixed(2).toString() + " votos.";
       return API.sendChat(msg);
     };
 
@@ -1865,7 +1865,7 @@ Chatbot
     var msg;
 
     msg = chat.message.toLowerCase();
-    if (msg.indexOf('¨¨¨¨¨¨') !== -1 || msg.indexOf('¨¨¨¨¨¨') !== -1 || msg.indexOf('¨¨¨¨¨¨') !== -1 || msg.indexOf('¨¨¨¨¨¨') !== -1 || msg.indexOf(':trollface:') !== -1 || msg.indexOf('autowoot:') !== -1) {
+    if (msg.indexOf('Â¨Â¨Â¨Â¨Â¨Â¨') !== -1 || msg.indexOf('Â¨Â¨Â¨Â¨Â¨Â¨') !== -1 || msg.indexOf('Â¨Â¨Â¨Â¨Â¨Â¨') !== -1 || msg.indexOf('Â¨Â¨Â¨Â¨Â¨Â¨') !== -1 || msg.indexOf(':trollface:') !== -1 || msg.indexOf('autowoot:') !== -1) {
       return API.moderateDeleteChat(chat.chatID);
     }
   };
@@ -1875,7 +1875,7 @@ Chatbot
     msg = chat.message.toLowerCase();
     responses = ["@{beggar}  ", "@{beggar} ", "@{beggar} ", "@{beggar} "];
     r = Math.floor(Math.random() * responses.length);
-    if (msg.indexOf('¨¨¨¨') !== -1 || msg.indexOf('¨¨¨¨') !== -1 || msg.indexOf('¨¨¨¨') !== -1 || msg.indexOf('¨¨¨¨¨¨') !== -1 || msg.indexOf('¨¨¨¨¨¨') !== -1) {
+    if (msg.indexOf('Â¨Â¨Â¨Â¨') !== -1 || msg.indexOf('Â¨Â¨Â¨Â¨') !== -1 || msg.indexOf('Â¨Â¨Â¨Â¨') !== -1 || msg.indexOf('Â¨Â¨Â¨Â¨Â¨Â¨') !== -1 || msg.indexOf('Â¨Â¨Â¨Â¨Â¨Â¨') !== -1) {
       return API.sendChat(responses[r].replace("{beggar}", chat.from));
     }
   };
