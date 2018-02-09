@@ -4861,7 +4861,4 @@
         }
     };
 
-    loadChat(basicBot.startup);
-    $.getScript("https://cdn.database-ammbr.tk/bot/edm-indie/IA.js");
-    //$.getScript("https://cdn.database-ammbr.tk/bot/edm-indie/ext.js");
-}).call(this);
+   
