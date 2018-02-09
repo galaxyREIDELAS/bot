@@ -76,10 +76,10 @@ var IPB = {
 		scCheck : function(data,obj){
 			IPB.misc.songInfo=null;
 			if (!data || !obj || !obj.user)
-				return API.sendChat('[Erro] Falha ao obter informações sobre a música.');
+				return API.sendChat('[Erro] Falha ao obter informaÃ§Ãµes sobre a mÃºsica.');
 			
 			if (!data.length){
-				API.sendChat('[@'+obj.un+'] música indisponível, você será pulado e movido para primeiro na lista de espera!');
+				API.sendChat('[@'+obj.un+'] mÃºsica indisponÃ­vel, vocÃª serÃ¡ pulado e movido para primeiro na lista de espera!');
 				return API.moderateSkip(function(){API.moderateMoveDJ(obj.uid,1);});
 			}
 			
@@ -95,7 +95,7 @@ var IPB = {
 				
 				IPB.misc.songURL = song.permalink_url;
 				
-				IPB.misc.songInfo = 'Tocando no momento: '+username+' - '+title+' (reproduções: '+pc+', :star:: '+fc+', gênero: '+genre+', downloads: '+dc+', enviada em: '+song.created_at+')';
+				IPB.misc.songInfo = 'Tocando no momento: '+username+' - '+title+' (reproduÃ§Ãµes: '+pc+', :star:: '+fc+', gÃªnero: '+genre+', downloads: '+dc+', enviada em: '+song.created_at+')';
 				
 				if (IPB.settings.showMediaInfo)
 					API.sendChat(IPB.misc.songInfo);
@@ -125,15 +125,15 @@ var IPB = {
 				IPB.settings.lotWinners.push(user.id);
 				IPB.settings.lotWinner = user.id;
 				IPB.timeouts.lotSelect = setTimeout(IPB.tools.boostLottery, 1e3 * 120);
-				API.sendChat("@" + user.un + ' Você ganhou a loteria! Antes de 2 minutos, digite !lottery para ser movido a posição 1. Caso o contrário, será sorteado outro usuário.');
-			} else API.sendChat("Infelizmente, ninguem estava possibilitado para ganhar a loteria!( ou alguma coisa ruim aconteceu!) Será sorteado um novo ganhador, então fique ativo no chat!")
+				API.sendChat("@" + user.un + ' VocÃª ganhou a loteria! Antes de 2 minutos, digite !lottery para ser movido a posiÃ§Ã£o 1. Caso o contrÃ¡rio, serÃ¡ sorteado outro usuÃ¡rio.');
+			} else API.sendChat("Infelizmente, ninguem estava possibilitado para ganhar a loteria!( ou alguma coisa ruim aconteceu!) SerÃ¡ sorteado um novo ganhador, entÃ£o fique ativo no chat!")
 		},
 		save: function() {
 			var t = {
 				settings: IPB.settings
 			};
 			localStorage.setItem("IPBData", JSON.stringify(t));
-			console.log('[IPB] Configurações do IPB Salvas.');
+			console.log('[IPB] ConfiguraÃ§Ãµes do IPB Salvas.');
 		},
 		load: function() {
 			t = JSON.parse(localStorage.getItem("IPBData"));
@@ -184,7 +184,7 @@ var IPB = {
 				API.sendChat('[' + data.un + '] Usou Skip');
 				API.moderateSkip();
 			}else{
-				API.sendChat('@' + data.un + ' Você não tem permissão para usar este comando!');
+				API.sendChat('@' + data.un + ' VocÃª nÃ£o tem permissÃ£o para usar este comando!');
 			}
 		},
 		mute: function(data, split){
@@ -194,16 +194,16 @@ var IPB = {
 				var user2 = IPB.tools.getUserByName(name).role || IPB.settings.admin.indexOf(data.uid) > -1;
 				if(user1 > user2){
 					if(IPB.settings.usersMute.indexOf(name) > -1){
-					   API.sendChat('[' + data.un + '] Usuario já está mutado.');
+					   API.sendChat('[' + data.un + '] Usuario jÃ¡ estÃ¡ mutado.');
 					}else{
 					   IPB.settings.usersMute.push(name);
 					   API.sendChat('[' + data.un + '] Usuario: @' + name + ' Mutado.');
 					}
 				} else {
-					API.sendChat('@' + data.un + ' Você não pode mutar usuarios com rank maior ou igual ao o seu!');
+					API.sendChat('@' + data.un + ' VocÃª nÃ£o pode mutar usuarios com rank maior ou igual ao o seu!');
 				}
 			}else{
-				API.sendChat('@' + data.un + ' Você não tem permissão para usar este comando!');
+				API.sendChat('@' + data.un + ' VocÃª nÃ£o tem permissÃ£o para usar este comando!');
 			}
 		},
 		unmute: function(data, split){
@@ -223,18 +223,18 @@ var IPB = {
 					if (IPB.tools.getUserByName(data.message.substr(7))){
 						IPB.misc.duel.push(data.uid);
 						IPB.misc.duel.push(IPB.tools.getUserByName(data.message.substr(7)).id);
-						API.sendChat('@' + data.message.substr(7) + ', ' + data.un + '  Te chamou para o x1! Antes de dois minutos digite !accept para aceitar o x1. AVISO o perdedor ficará mutado por 2 minutos!');
+						API.sendChat('@' + data.message.substr(7) + ', ' + data.un + '  Te chamou para o x1! Antes de dois minutos digite !accept para aceitar o x1. AVISO o perdedor ficarÃ¡ mutado por 2 minutos!');
 						setTimeout(function(){
 							IPB.misc.duel = [];
 						}, 120e3);
 					} else {
-						API.sendChat('[' + data.un + '] Usuário Invalido! Modo de usar: !duel @usuário');
+						API.sendChat('[' + data.un + '] UsuÃ¡rio Invalido! Modo de usar: !duel @usuÃ¡rio');
 					}
 			}
 		},
 		accept: function(data, split){
 			if(data.uid === IPB.misc.duel[1]){
-				API.sendChat(API.getUser(IPB.misc.duel[0]).username + ' and ' + API.getUser(IPB.misc.duel[1]).username + ' comeÃ§aram o duel!');
+				API.sendChat(API.getUser(IPB.misc.duel[0]).username + ' and ' + API.getUser(IPB.misc.duel[1]).username + ' comeÃƒÂ§aram o duel!');
 				var win = Math.round(Math.random());
 				win === 0 ? lose = 1 : lose = 0;
 				var winner = IPB.misc.duel[win];
@@ -253,7 +253,7 @@ var IPB = {
 			if (data.uid === IPB.misc.duel[1]){
 				IPB.misc.duel = [];
 				IPB.misc.duelReady = true;
-				API.sendChat(data.un + ' Não aceitou o duelo.');
+				API.sendChat(data.un + ' NÃ£o aceitou o duelo.');
 			}
 		},
 		lockskip: function(data, split) {
@@ -262,7 +262,7 @@ var IPB = {
 				API.sendChat('[' + data.un + '] Usou Lockskip!')
 				API.moderateSkip(function(){API.moderateMoveDJ(id, 1);});
 			} else {
-				API.sendChat('@' + data.un + ' Você não tem permissão para usar este comando!');
+				API.sendChat('@' + data.un + ' VocÃª nÃ£o tem permissÃ£o para usar este comando!');
 			}
 		},
 		move: function(data, split) {
@@ -281,13 +281,13 @@ var IPB = {
 					name = data.message.substring(7, lastSpace);
 				}
 				var user = IPB.tools.getUserByName(name);
-				if (typeof user === 'boolean') return API.sendChat('[' + data.un + '] Usuário Invalido.');
+				if (typeof user === 'boolean') return API.sendChat('[' + data.un + '] UsuÃ¡rio Invalido.');
 				if (!isNaN(pos)) {
-					API.sendChat('[' + data.un + '] Movendo ' + name + ' para a posição: ' + pos + '.');
+					API.sendChat('[' + data.un + '] Movendo ' + name + ' para a posiÃ§Ã£o: ' + pos + '.');
 					API.moderateMoveDJ(user.id, pos);
-				} else return API.sendChat('[' + data.un + '] Posição Invalida!');
+				} else return API.sendChat('[' + data.un + '] PosiÃ§Ã£o Invalida!');
 			} else {
-				API.sendChat('@' + data.un + ' Você não tem permissão para usar este comando!');
+				API.sendChat('@' + data.un + ' VocÃª nÃ£o tem permissÃ£o para usar este comando!');
 			}
 		},
 		apocalypse: function(data, split) {
@@ -302,7 +302,7 @@ var IPB = {
 				}
 
 			} else {
-				API.sendChat('@' + data.un + ' Você não tem permissão para usar este comando!');
+				API.sendChat('@' + data.un + ' VocÃª nÃ£o tem permissÃ£o para usar este comando!');
 			}
 			IPB.tools.save();
 		},
@@ -311,19 +311,19 @@ var IPB = {
 				API.sendChat('[' + data.un + '] A loteria vai sortear em 5 minutos! esteja ativo no chat para participar!');
 				setTimeout(IPB.tools.boostLottery, 300e3);
 			} else {
-				API.sendChat('@' + data.un + ' VocÃª não tem permissão para usar este comando!');
+				API.sendChat('@' + data.un + ' VocÃƒÂª nÃ£o tem permissÃ£o para usar este comando!');
 			}
 		},
 		boostlottery: function(data, split) {
 			if(API.getUser(data.uid).role >= 3 || IPB.settings.admins.indexOf(data.uid) > -1){
 				IPB.settings.lottery = !IPB.settings.lottery;
-				if (IPB.settings.lottery) API.sendChat('[' + data.un + '] Bonus da loteria ativo. A cada hora um usuário ativo tem a chance de ganhar a posição 1 como prêmio na lista de espera!');
+				if (IPB.settings.lottery) API.sendChat('[' + data.un + '] Bonus da loteria ativo. A cada hora um usuÃ¡rio ativo tem a chance de ganhar a posiÃ§Ã£o 1 como prÃªmio na lista de espera!');
 				else {
 					API.sendChat('[' + data.un + '] Loteria Desativada!');
 					clearTimeout(IPB.timeouts.lotSelect)
 				}
 			} else {
-				API.sendChat('@' + data.un + ' Você não tem permissão para usar este comando!');
+				API.sendChat('@' + data.un + ' VocÃª nÃ£o tem permissÃ£o para usar este comando!');
 			}
 			IPB.tools.save();
 		},
@@ -336,7 +336,7 @@ var IPB = {
 					IPB.settings.lotWinners.length = 0;
 					++IPB.settings.lot;
 						API.moderateMoveDJ(data.uid, 5);
-						API.sendChat('[' + data.un + '] Movendo o ganhador da loteria para a posição 1.');
+						API.sendChat('[' + data.un + '] Movendo o ganhador da loteria para a posiÃ§Ã£o 1.');
 				}
 			}
 		},
@@ -345,15 +345,15 @@ var IPB = {
 				IPB.settings.globCounter = (new Date).getMinutes();
 				API.sendChat('[' + data.un + '] Loteria sincronizada com o tempo atual. A Loteria vai ocorrer a cada hora!. (:00)')
 			} else {
-				API.sendChat('@' + data.un + ' Você não tem permissÃ£o para usar este comando!');
+				API.sendChat('@' + data.un + ' VocÃª nÃ£o tem permissÃƒÂ£o para usar este comando!');
 			}
 		},
 		lotreset: function(data, split) {
 			if(API.getUser(data.uid).role >= 3 || IPB.settings.admins.indexOf(data.uid) > -1){
 				IPB.settings.globCounter = 0;
-				API.sendChat('[' + data.un + '] Loteria Resetada! a próxima rodada será nos próximos 60 minutos.');
+				API.sendChat('[' + data.un + '] Loteria Resetada! a prÃ³xima rodada serÃ¡ nos prÃ³ximos 60 minutos.');
 			} else {
-				API.sendChat('@' + data.un + ' Você não tem permissão para usar este comando!');
+				API.sendChat('@' + data.un + ' VocÃª nÃ£o tem permissÃ£o para usar este comando!');
 			}
 		},
 		kill: function(data, split){
@@ -362,7 +362,7 @@ var IPB = {
 				IPB.tools.save();
 				IPB.tools.kill();
 			} else {
-				API.sendChat('@' + data.un + ' Você não tem permissão para usar este comando!');
+				API.sendChat('@' + data.un + ' VocÃª nÃ£o tem permissÃ£o para usar este comando!');
 			}
 		},
 		reload: function(data, split) {
